@@ -1,0 +1,25 @@
+input:invalid {
+  background: hsla(0, 90%, 70%, 1);
+}
+
+input:valid {
+  background: hsla(100, 90%, 70%, 1);
+}
+
+input:valid + span:before {
+    content: "Servez l'Ordinateur. L'Ordinateur est votre Ami.";
+    color: hsla(100, 45%, 35%, 1);
+}
+
+input:invalid + span:before {
+    content: "Rendez vous au centre d'exécution le plus proche pour une exécution sommaire.";
+    color: hsla(0, 45%, 35%, 1);
+}
+
+input:placeholder-shown {
+    background: inherit;
+}
+
+input:placeholder-shown+span:before {
+    content: "";
+}
