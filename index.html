@@ -19,8 +19,15 @@
       <!-- https://github.com/aloisdg/matricule -->
       <form>
         <h2>Et vous ?</h2>
-         <label for="name">Matricule:</label>
-        <input type="text" id="name" name="user_name" required placeholder="Alo-I-SDG-1" pattern="[A-Z][a-z]{1,4}-(Ir|[ROJVBIU]|Vi)-[A-Z]{3}-[1-6]">
+         <label for="matricule">Matricule:
+        <input type="text" id="matricule" name="matricule" required autofocus inputmode="verbatim" maxlength="14" placeholder="Alo-I-SDG-1" autocomplete="username" pattern="[A-Z][a-z]{1,4}-(Ir|[ROJVBIU]|Vi)-[A-Z]{3}-[1-6]" list="matricules">
+         <datalist id="matricules">
+          <option value="Beg-O-NIA-3">Beg-O-NIA-3</option>
+          <option value="James-B-OND-1">James-B-OND-1</option>
+          <option value="Anna-R-CHI-2">Anna-R-CHI-2</option>
+          <option value="Comm-U-NIST-4">Comm-U-NIST-4</option>
+        </datalist>
+ </label>
         <span>&nbsp;</span>
   </form>
   <h2>Honnêtes Citoyens:</h2>
