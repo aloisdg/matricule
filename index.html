@@ -44,6 +44,31 @@
           La tradition de Paranoïa veut que les noms ainsi obtenus soient des jeux de mots lamentables. Soyez cool et respectez là ;)
           </marquee>
       </aside>
-  </body>
+      <script>
 
+// http://stackoverflow.com/a/42460776/1248177
+// http://stackoverflow.com/questions/8486099/how-do-i-parse-a-url-query-parameters-in-javascript
+// http://codereview.stackexchange.com/questions/9574/faster-and-cleaner-way-to-parse-parameters-from-url-in-javascript-jquery
+      function getJsonFromUrl() {
+        return Object.assign(...location.search.substr(1).split("&").map(x => {
+          [key, value] = x.split("=")
+          return { [key]: decodeURIComponent(value) }
+        }))
+      }
+
+      function setPattern(pattern) {
+        document.querySelector('#matricule').setAttribute("pattern", pattern)
+      }
+
+      function useParams(params) {
+        if (!params)
+          return
+
+        if (params['pattern'])
+          setPattern(params['pattern'])
+      }
+
+    useParams(getJsonFromUrl())
+      </script>
+  </body>
 </html>
