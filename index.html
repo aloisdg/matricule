@@ -9,17 +9,17 @@
 
     <!--https://www.debuggex.com/r/34Ab7ZYJtgKX-wEn-->
   <body>
-    <h1>
+    <h1 id="title">
       Bonjour citoyens du Complex Alpha !
     </h1>
-    <p>
+    <p id="description">
       Bienvenue sur le formulaire de vérification de matricule. Faites attention les traîtres se cachent partout ! Ne faites confiance à personne ! Gardez votre laser à portée de la main ! 
     </p>
       <!-- Si tu regardes ceci, c'est que le code t'intéresse. Viens me filer un coup de main ! -->
       <!-- https://github.com/aloisdg/matricule -->
       <form>
         <h2>Et vous ?</h2>
-         <label for="matricule">Matricule:
+         <label id="label" for="matricule"><span>Matricule:</span>
         <input type="text" id="matricule" name="matricule" required autofocus inputmode="verbatim" maxlength="14" placeholder="Alo-I-SDG-1" autocomplete="username" pattern="[A-Z][a-z]{1,4}-(Ir|[ROJVBIU]|Vi)-[A-Z]{3}-[1-6]" list="matricules">
          <datalist id="matricules">
           <option value="Beg-O-NIA-3">Beg-O-NIA-3</option>
@@ -45,6 +45,8 @@
           </marquee>
       </aside>
       <script>
+    let $ = document.querySelector.bind(document);
+    let $$ = document.querySelectorAll.bind(document);
 
 // http://stackoverflow.com/a/42460776/1248177
 // http://stackoverflow.com/questions/8486099/how-do-i-parse-a-url-query-parameters-in-javascript
@@ -57,18 +59,53 @@
       }
 
       function setPattern(pattern) {
-        document.querySelector('#matricule').setAttribute("pattern", pattern)
+        $('#matricule').pattern = pattern
+      }
+
+      function setPlaceholder(placeholder) {
+        $('#matricule').placeholder = placeholder
+      }
+
+      function setOptions(options) {
+        $('#matricule + datalist').innerHTML = ""
+        options.split(',').forEach(value => {
+          let option = document.createElement('option')
+          option.value = value
+          option.textContent = value
+          $('#matricule + datalist').appendChild(option)
+        })
+      }
+
+      function setTitle(title) {
+        $('#title').textContent = title
+        document.title = title
+      }
+
+      function setLabel (label) {
+        $('#label > span:first-child').textContent = label
       }
 
       function useParams(params) {
         if (!params)
           return
+        
+        if (params.pattern)
+          setPattern(params.pattern)
 
-        if (params['pattern'])
-          setPattern(params['pattern'])
+        if (params.placeholder)
+          setPlaceholder(params.placeholder)
+
+        if (params.options)
+          setOptions(params.options)
+
+        if (params.label)
+          setLabel(params.label)
+
+        if (params.title)
+          setTitle(params.title)
       }
 
-    useParams(getJsonFromUrl())
+      useParams(getJsonFromUrl())
       </script>
   </body>
 </html>
